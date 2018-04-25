@@ -1,7 +1,8 @@
 <?php
 
-$data = json_decode(file_get_contents('FILENAME.json'));
-// print_r($data);
+$file = $argv[1];
+$data = json_decode(file_get_contents($file));
+$basename = basename($file);
 
 // Load up speaker labels.
 $labels = $data->results->speaker_labels->segments;
@@ -45,10 +46,9 @@ $lines[] = [
   'line' => $line,
 ];
 
-// print_r($lines);
 
 // Finally, let's print out our transcript.
-$fh = fopen('transcript.txt', 'w');
+$fh = fopen($file . '-transcript.txt', 'w');
 foreach ($lines as $line_data) {
   $line = $line_data['speaker'] . ': ' . $line_data['line'];
   fputs($fh, $line . "\n\n");
