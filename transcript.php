@@ -17,6 +17,7 @@ foreach ($labels as $label) {
 $items = $data->results->items;
 $lines = [];
 $line = '';
+$time = 0;
 $speaker = NULL;
 foreach ($items as $item) {
   $content = $item->alternatives[0]->content;
@@ -31,10 +32,12 @@ foreach ($items as $item) {
       $lines[] = [
         'speaker' => $speaker,
         'line' => $line,
+        'time' => $time,
       ];
     }
     $line = $content;
     $speaker = $current_speaker;
+    $time = number_format($item->start_time, 3, '.', '');
   }
   elseif ($item->type != 'punctuation') {
     $line .= ' ' . $content;
@@ -44,13 +47,14 @@ foreach ($items as $item) {
 $lines[] = [
   'speaker' => $speaker,
   'line' => $line,
+  'time' => $time,
 ];
 
 
 // Finally, let's print out our transcript.
 $fh = fopen($file . '-transcript.txt', 'w');
 foreach ($lines as $line_data) {
-  $line = $line_data['speaker'] . ': ' . $line_data['line'];
+  $line = '[' . gmdate('H:i:s', $line_data['time']) . '] ' . $line_data['speaker'] . ': ' . $line_data['line'];
   fputs($fh, $line . "\n\n");
 }
 fclose($fh);
