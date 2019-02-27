@@ -5,8 +5,12 @@ Amazon has a neat Transcription service and you can have the service identify sp
 
 This script creates a transcript that's human-readable.
 
-## Directions
+## Regular Directions
 
 1. Download your Transcription from the Job Details page. The filename format is currently asrOutput.json.
 2. Run the `transcript.php` program on the downloaded file, i.e. `php ./transcript.php asrOutput.json`
 3. Results will be written in your current working directory as `[FILENAME]-transcript.txt`
+
+## Channel Directions
+
+An optional script has been provided to generate a transcript based on channels. You run the `transcript_ch.php` program and it will generate the results in a `[FILENAME]-transcript_ch.txt` file. Huge thanks to [Joel Varghese](https://github.com/joelprince25) for the contribution!
