@@ -19,6 +19,6 @@ An optional script has been provided to generate a transcript based on channels.
 
 So I use a Mac and I download the asrOutput.json file and it lands in my `~/Downloads` folder. So I use this command from my `aws-transcribe-transcript` folder:
 
-> `mv ~/Downloads/asrOutput.json j.json && php ./transcribe.php j.json && cat j.json-transcript.txt | pbcopy`
+> `mv ~/Downloads/asrOutput.json j.json && php ./transcript.php j.json && cat j.json-transcript.txt | pbcopy`
 
 This will put the transcript in my clipboard so I can paste it into an email response to the person who requested a transcript.
