@@ -1,3 +1,5 @@
+This is a port of purdy/aws-transcribe-transcript intended to run as an AWS Lambda function
+
 # aws-transcribe-transcript
 This is a simple utility script to convert the Amazon Transcribe .json transcript into a more readable transcript.
 
